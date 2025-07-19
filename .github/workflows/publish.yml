@@ -19,17 +19,13 @@ jobs:
 
       - name: Build and tag frontend
         run: docker buildx build --platform linux/amd64 --tag shreenidhidev/frontend:v1 ./frontend/
-  login:
-    runs-on: ubuntu-latest
-    steps:
+        
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-  publish:
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Push game service
         run: docker push shreenidhidev/game-service:v1
       - name: Push auth service
